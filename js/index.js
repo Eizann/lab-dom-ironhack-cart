@@ -36,11 +36,11 @@ function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
   //... your code goes here
-  const parentElement = target.parentNode.parentNode;
+  const productElement = target.parentNode.parentNode;
   const totalSelectorDelete = document.querySelector('#total-value span');
-  const subtotalDelete = parentElement.querySelector('.subtotal span').innerHTML;
+  const subtotalDelete = productElement.querySelector('.subtotal span').innerHTML;
   totalSelectorDelete.innerHTML -= subtotalDelete;
-  parentElement.innerHTML = "";
+  productElement.innerHTML = "";
 }
 
 
