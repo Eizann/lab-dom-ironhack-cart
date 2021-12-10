@@ -35,9 +35,13 @@ function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
   //... your code goes here
-  const parentElement = target.parentNode;
-
+  const parentElement = target.parentNode.parentNode;
+  console.log(parentElement);
+  while (parentElement.lastElementChild) {
+    parentElement.removeChild(parentElement.lastElementChild);
+  }
 }
+
 
 // ITERATION 5
 
