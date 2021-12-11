@@ -9,7 +9,6 @@ function updateSubtotal(product) {
   let quantityValue = quantity.value;
   let subTotalPrice = priceValue * quantityValue;
   subtotal.innerHTML = `$<span>${subTotalPrice.toFixed(2)}</span>`;
-
   return Number(subTotalPrice.toFixed(2));
   //... your code goes here
 }
@@ -50,9 +49,10 @@ function createProduct() {
   //... your code goes here
   const productName = document.querySelector('.create-product input').value;
   const price = document.querySelectorAll('.create-product input')[1].value;
-  if (typeof productName !== "string" || productName.length == 0) {
-    return alert('You must type a product name');
-  }
+
+  if (typeof productName !== "string" || productName.length == 0) return alert('You must type a product name !');
+  if (price <= 0) return alert('The price must be superior than 0 !');
+
   const tableBody = document.querySelector('tbody');
   tableBody.innerHTML += `<tr class="product">
   <td class="name">
@@ -66,6 +66,11 @@ function createProduct() {
   <button class="btn btn-remove">Remove</button>
   </td>
   </tr>`;
+
+  const removeBtns = document.getElementsByClassName('btn btn-remove');
+  for (const button of removeBtns) {
+    button.addEventListener('click', removeProduct);
+  };
 }
 
 window.addEventListener('load', () => {
@@ -79,6 +84,5 @@ window.addEventListener('load', () => {
   };
 
   const createProductButton = document.getElementById('create');
-  console.log(document.querySelector('.create-product input'))
   createProductButton.addEventListener('click', createProduct);
 })
