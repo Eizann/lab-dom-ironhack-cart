@@ -48,6 +48,24 @@ function removeProduct(event) {
 
 function createProduct() {
   //... your code goes here
+  const productName = document.querySelector('.create-product input').value;
+  const price = document.querySelectorAll('.create-product input')[1].value;
+  if (typeof productName !== "string" || productName.length == 0) {
+    return alert('You must type a product name');
+  }
+  const tableBody = document.querySelector('tbody');
+  tableBody.innerHTML += `<tr class="product">
+  <td class="name">
+  <span>${productName}</span></td>
+  <td class="price">$<span>${price}</span></td>
+  <td class="quantity"> 
+  <input type="number" value="0" min="0" placeholder="Quantity" />
+  </td>
+  <td class="subtotal">$<span>0</span></td>
+  <td class="action">
+  <button class="btn btn-remove">Remove</button>
+  </td>
+  </tr>`;
 }
 
 window.addEventListener('load', () => {
@@ -59,4 +77,8 @@ window.addEventListener('load', () => {
   for (const button of removeBtns) {
     button.addEventListener('click', removeProduct);
   };
-});
+
+  const createProductButton = document.getElementById('create');
+  console.log(document.querySelector('.create-product input'))
+  createProductButton.addEventListener('click', createProduct);
+})
